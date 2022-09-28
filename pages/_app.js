@@ -1,15 +1,17 @@
 import Header from '../components/Header'
 import CFooter from '../components/CFooter'
 import '../styles/globals.css'
+import { Provider } from 'react-redux'
+import store from '../redux/store'
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Header />
-      <Component {...pageProps} />
-      <CFooter />
-    </>
-  )
+    return (
+        <Provider store={store}>
+            <Header />
+            <Component {...pageProps} />
+            <CFooter />
+        </Provider>
+    )
 }
 
 export default MyApp

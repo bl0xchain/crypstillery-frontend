@@ -7,7 +7,7 @@ const Products = () => {
                 Featured NFTs
             </h2>
             <div className="flex flex-row">
-                <div class="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4" >
+                <div className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4" >
                     <Card
                         imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
                         imgSrc="https://flowbite.com/docs/images/blog/image-1.jpg"

@@ -1,6 +1,7 @@
 import { Button, DarkThemeToggle, Flowbite, Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
+import Wallet from "./Wallet";
 
 const Header = () => {
     return (
@@ -15,10 +16,8 @@ const Header = () => {
                     CRYPSTILLERY
                 </span>
             </Navbar.Brand>
-            <div className="flex md:order-2">
-                <Button>
-                    Get started
-                </Button>
+            <div className="flex md:order-2 items-center">
+                <Wallet />
                 <Navbar.Toggle />
                 <Flowbite>
                     <DarkThemeToggle />

@@ -1,12 +1,11 @@
-import tokensService from "./tokens.service";
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_URI;
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
-class MetaMaskService {
-
-    async connectWallet() {
+export const connectWallet = createAsyncThunk(
+    'wallet/connect',
+    async () => {
         if (window.ethereum) {
             try {
                 const addressArray = await window.ethereum.request({
@@ -33,15 +32,18 @@ class MetaMaskService {
             }
         }
     }
+)
 
-    async changeNetwork() {
+export const changeNetwork = createAsyncThunk(
+    'wallet/change', 
+    async () => {
         if (window.ethereum) {
-            const chainId = '3';
+            const chainId = '4';
             if (window.ethereum.networkVersion !== chainId) {
                 try {
                     await window.ethereum.request({
                         method: 'wallet_switchEthereumChain',
-                        params: [{ chainId: '0x3' }]
+                        params: [{ chainId: '0x4' }]
                     });
                     const addressArray = await window.ethereum.request({
                         method: "eth_requestAccounts",
@@ -73,38 +75,11 @@ class MetaMaskService {
             }
         }
     }
+)
 
-    async disconnectWallet() {
-        if (window.ethereum) {
-            try {
-                await window.ethereum.request({
-                    method: "wallet_requestPermissions",
-                    params: [{
-                        eth_accounts: {}
-                    }]
-                });
-                return {
-                    address: "",
-                    chainId: "",
-                    status: "DISCONNECTED"
-                }
-            } catch (err) {
-                return {
-                    address: "",
-                    chainId: "",
-                    status: "UNKNOWN_ERROR"
-                }
-            }
-        } else {
-            return {
-                address: "",
-                chainId: "",
-                status: "NO_METAMASK"
-            }
-        }
-    }
-
-    async getCurrentWalletConnect() {
+export const loadWallet = createAsyncThunk(
+    'wallet/load',
+    async () => {
         if (window.ethereum) {
             try {
                 const addressArray = await window.ethereum.request({
@@ -140,31 +115,51 @@ class MetaMaskService {
             }
         }
     }
+)
 
-    async getEthBalance(address) {
-        const balance = await window.ethereum.request({
-            method: "eth_getBalance",
-            params: [address, 'latest'],
-        });
-        return web3.utils.fromWei(balance);
+
+export const walletSlice = createSlice({
+    name: 'wallet',
+    initialState: {
+        address: "",
+        chainId: "",
+        status: "NOT_LOADED"
+    },
+    reducers: {
+        updateWallet(state) {
+            state = {
+                address: 'my address',
+                chainId: 'my chain',
+                status: 'fake data'
+            }    
+        }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(connectWallet.pending, (state, action) => {
+            state.status = "PENDING"
+        })
+        builder.addCase(connectWallet.fulfilled, (state, action) => {
+            state.status = action.payload.status
+            state.address = action.payload.address
+            state.chainId = action.payload.chainId
+        })
+        builder.addCase(loadWallet.pending, (state, action) => {
+            state.status = "PENDING"
+        })
+        .addCase(loadWallet.fulfilled, (state, action) => {
+            state.status = action.payload.status
+            state.address = action.payload.address
+            state.chainId = action.payload.chainId
+        })
+        .addCase(changeNetwork.fulfilled, (state, action) => {
+            state.status = action.payload.status
+            state.address = action.payload.address
+            state.chainId = action.payload.chainId
+        })
     }
+})
 
-    async addTokenToWallet(tokenAddress) {
-        const tokenData = await tokensService.getTokenData(tokenAddress);
-        const response = await window.ethereum.request({
-            method: "wallet_watchAsset",
-            params: {
-                type: 'ERC20',
-                options: {
-                    address: tokenAddress,
-                    symbol: tokenData.symbol,
-                    decimals: tokenData.decimals,
-                },
-            },
-        });
-        console.log(response);
-        return response;
-    }
-}
+export const { updateWallet } = walletSlice.actions
 
-export default new MetaMaskService();
+export default walletSlice.reducer
+

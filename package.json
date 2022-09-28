@@ -6,13 +6,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@alch/alchemy-web3": "^1.4.6",
+    "@reduxjs/toolkit": "^1.8.5",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "next": "latest",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
-    "react-redux": "^7.2.9",
+    "react-redux": "^8.0.4",
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
