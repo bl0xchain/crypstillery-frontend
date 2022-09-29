@@ -1,16 +1,19 @@
 import Brands from '../components/Brands'
 import Products from '../components/Products'
 import Slider from '../components/Slider'
-import { Provider } from 'react-redux'
-import store from '../redux/store'
+import Mint from '../components/Mint'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
+    const address = useSelector((state) => state.wallet.address)
+    const chainId = useSelector((state) => state.wallet.chainId)
     return (
-        <Provider store={store}>
+        <>
             <Slider />
+            <Mint address={address} chainId={chainId} />
             <Products />
             <Brands />
-        </Provider>
+        </>
     )
 }
 

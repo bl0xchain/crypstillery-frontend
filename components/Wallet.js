@@ -2,7 +2,7 @@ import { Badge, Button, Spinner, Tooltip } from "flowbite-react";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeNetwork, connectWallet, loadWallet } from "../redux/slices/walletSlice";
-import { getShortAddress } from "../redux/utils";
+import { getShortAddress } from "../services/utils";
 import { FaUnlink } from "react-icons/fa"
 
 const Wallet = () => {

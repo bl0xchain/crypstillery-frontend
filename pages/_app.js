@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
             <Header />
-            <Component {...pageProps} />
+            <Component {...pageProps} test="etst" />
             <CFooter />
         </Provider>
     )
