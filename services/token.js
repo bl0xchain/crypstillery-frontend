@@ -29,7 +29,6 @@ class TokenService {
         }
         const tokenURI = "https://gateway.pinata.cloud/ipfs/QmTDDNR3TJBeLaXjezUwsDSbFkW77Rs99itdovgYAkyF6Y";
         const value = await this.getCost();
-        console.log(parseInt(value).toString(16));
         const data = tokenContract.methods.mint(address, tokenURI).encodeABI();
         const response = await sendTransaction(address, tokenContractAddress, data, parseInt(value).toString(16));
         return response;

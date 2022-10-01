@@ -1,11 +1,14 @@
 import { Button, Progress, Spinner } from "flowbite-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { showPopUp } from "../redux/slices/walletSlice";
 import tokenService from "../services/token";
 import { fromWei } from "../services/utils";
 
-const Mint = ({ address, chainId }) => {
+const Mint = ({ address, chainId, status }) => {
+    const dispatch = useDispatch()
+
     const [minting, setMinting] = useState(false)
     const [totalSupply, setTotalSupply] = useState('')
     const [maxSupply, setMaxSupply] = useState('')
@@ -14,15 +17,18 @@ const Mint = ({ address, chainId }) => {
 
     const handleMint = async () => {
         setError("")
-        setMinting(true)
-        const response = await tokenService.mintNFT(address)
-        console.log(response)
-        if(response.code !== 200) {
-            setError(response.status)
+        if(status !== 'CONNECTED') {
+            dispatch(showPopUp())
         } else {
-            setError("")
+            setMinting(true)
+            const response = await tokenService.mintNFT(address)
+            if(response.code !== 200) {
+                setError(response.status)
+            } else {
+                setError("")
+            }
+            setMinting(false)
         }
-        setMinting(false)
     }
 
     useEffect(() => {

@@ -44,7 +44,3 @@ export const sendTransaction = async(address, contractAddress, data, value) => {
         };
     }
 }
-
-export const checkNetwork = (address, chainId) => {
-    
-}

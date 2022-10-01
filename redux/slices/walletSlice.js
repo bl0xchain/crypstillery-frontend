@@ -6,7 +6,7 @@ const web3 = createAlchemyWeb3(alchemyKey);
 export const connectWallet = createAsyncThunk(
     'wallet/connect',
     async () => {
-        if (window.ethereum) {
+        if (typeof window.ethereum !== 'undefined') {
             try {
                 const addressArray = await window.ethereum.request({
                     method: "eth_requestAccounts",
@@ -15,13 +15,13 @@ export const connectWallet = createAsyncThunk(
                 return {
                     address: addressArray[0],
                     chainId: chainId,
-                    status: "CONNECTED"
+                    status: chainId == '0x4' ? "CONNECTED" : "INVALID_CHAIN"
                 }
             } catch (err) {
                 return {
                     address: "",
                     chainId: "",
-                    status: "UNKNOWN_ERROR"
+                    status: "NOT_CONNECTED"
                 }
             }
         } else {
@@ -35,9 +35,9 @@ export const connectWallet = createAsyncThunk(
 )
 
 export const changeNetwork = createAsyncThunk(
-    'wallet/change', 
+    'wallet/change',
     async () => {
-        if (window.ethereum) {
+        if (typeof window.ethereum !== 'undefined') {
             const chainId = '4';
             if (window.ethereum.networkVersion !== chainId) {
                 try {
@@ -52,10 +52,9 @@ export const changeNetwork = createAsyncThunk(
                     return {
                         address: addressArray[0],
                         chainId: chainId,
-                        status: "CONNECTED"
+                        status: chainId == '0x4' ? "CONNECTED" : "INVALID_CHAIN"
                     }
                 } catch (error) {
-                    console.log(error);
                     const addressArray = await window.ethereum.request({
                         method: "eth_requestAccounts",
                     });
@@ -63,11 +62,12 @@ export const changeNetwork = createAsyncThunk(
                     return {
                         address: addressArray[0],
                         chainId: chainId,
-                        status: "CONNECTED"
+                        status: chainId == '0x4' ? "CONNECTED" : "INVALID_CHAIN"
                     }
                 }
             }
         } else {
+            console.log('no metamask')
             return {
                 address: "",
                 chainId: "",
@@ -80,7 +80,7 @@ export const changeNetwork = createAsyncThunk(
 export const loadWallet = createAsyncThunk(
     'wallet/load',
     async () => {
-        if (window.ethereum) {
+        if (typeof window.ethereum !== 'undefined') {
             try {
                 const addressArray = await window.ethereum.request({
                     method: "eth_accounts",
@@ -90,7 +90,7 @@ export const loadWallet = createAsyncThunk(
                     return {
                         address: web3.utils.toChecksumAddress(addressArray[0]),
                         chainId: chainId,
-                        status: "CONNECTED"
+                        status: chainId == '0x4' ? "CONNECTED" : "INVALID_CHAIN"
                     }
                 } else {
                     return {
@@ -123,15 +123,15 @@ export const walletSlice = createSlice({
     initialState: {
         address: "",
         chainId: "",
-        status: "NOT_LOADED"
+        status: "NOT_LOADED",
+        popUp: false
     },
     reducers: {
-        updateWallet(state) {
-            state = {
-                address: 'my address',
-                chainId: 'my chain',
-                status: 'fake data'
-            }    
+        showPopUp(state) {
+            state.popUp = true
+        },
+        hidePopUp(state) {
+            state.popUp = false
         }
     },
     extraReducers: (builder) => {
@@ -159,7 +159,7 @@ export const walletSlice = createSlice({
     }
 })
 
-export const { updateWallet } = walletSlice.actions
+export const { showPopUp, hidePopUp } = walletSlice.actions
 
 export default walletSlice.reducer
 
