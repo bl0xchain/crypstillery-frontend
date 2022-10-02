@@ -2,6 +2,7 @@ import { Button, Progress, Spinner } from "flowbite-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { showTxModal } from "../redux/slices/transactionSlice";
 import { showPopUp } from "../redux/slices/walletSlice";
 import tokenService from "../services/token";
 import { fromWei } from "../services/utils";
@@ -22,10 +23,21 @@ const Mint = ({ address, chainId, status }) => {
         } else {
             setMinting(true)
             const response = await tokenService.mintNFT(address)
+            console.log(response)
             if(response.code !== 200) {
                 setError(response.status)
+                dispatch(showTxModal({
+                    status: 400,
+                    message: response.status,
+                    address: ''
+                }))
             } else {
                 setError("")
+                dispatch(showTxModal({
+                    status: 200,
+                    message: 'Minting request has been submitted successfully',
+                    address: response.status
+                }))
             }
             setMinting(false)
         }
