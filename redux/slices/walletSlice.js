@@ -38,12 +38,12 @@ export const changeNetwork = createAsyncThunk(
     'wallet/change',
     async () => {
         if (typeof window.ethereum !== 'undefined') {
-            const chainId = '4';
+            const chainId = '5';
             if (window.ethereum.networkVersion !== chainId) {
                 try {
                     await window.ethereum.request({
                         method: 'wallet_switchEthereumChain',
-                        params: [{ chainId: '0x4' }]
+                        params: [{ chainId: '0x5' }]
                     });
                     const addressArray = await window.ethereum.request({
                         method: "eth_requestAccounts",
@@ -62,7 +62,7 @@ export const changeNetwork = createAsyncThunk(
                     return {
                         address: addressArray[0],
                         chainId: chainId,
-                        status: chainId == '0x4' ? "CONNECTED" : "INVALID_CHAIN"
+                        status: chainId == '0x5' ? "CONNECTED" : "INVALID_CHAIN"
                     }
                 }
             }
@@ -90,7 +90,7 @@ export const loadWallet = createAsyncThunk(
                     return {
                         address: web3.utils.toChecksumAddress(addressArray[0]),
                         chainId: chainId,
-                        status: chainId == '0x4' ? "CONNECTED" : "INVALID_CHAIN"
+                        status: chainId == '0x5' ? "CONNECTED" : "INVALID_CHAIN"
                     }
                 } else {
                     return {

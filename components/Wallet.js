@@ -54,7 +54,7 @@ const Wallet = () => {
             {
                 status === 'CONNECTED' ?
                 <span className="font-semibold">Connected: {getShortAddress(address)}</span> :
-                <Tooltip content="Connect to Rinkeby Testnet" placement="left">
+                <Tooltip content="Connect to Goerli Testnet" placement="left">
                     <Badge color="failure" icon={FaUnlink} size="sm" onClick={() => dispatch(changeNetwork())} className="px-3 cursor-pointer">
                         Wrong Network
                     </Badge>
