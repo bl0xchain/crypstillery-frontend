@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import store from '../redux/store'
 import ConnectionCheck from '../components/ConnectionCheck'
 import TransactionModal from '../components/TransactionModal'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -12,6 +14,7 @@ function MyApp({ Component, pageProps }) {
             <Header />
             <ConnectionCheck />
             <TransactionModal />
+            <ToastContainer />
             <Component {...pageProps} />
             <CFooter />
         </Provider>

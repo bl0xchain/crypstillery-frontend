@@ -6,7 +6,8 @@ export const transactionSlice = createSlice({
         status: 0,
         message: '',
         address: '',
-        show: false
+        show: false,
+        notifications: []
     },
     reducers: {
         showTxModal(state, action) {
@@ -17,6 +18,15 @@ export const transactionSlice = createSlice({
         },
         hideTxModal(state) {
             state.show = false
+        },
+        addNotification(state, action) {
+            state.notifications.push({
+                status: action.payload.status,
+                message: action.payload.message
+            })
+        },
+        removeNotification(state) {
+            state.notifications.shift()
         }
     }
 })

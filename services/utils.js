@@ -1,3 +1,5 @@
+import DOMPurify from "dompurify";
+
 const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_URI;
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 export const web3 = createAlchemyWeb3(alchemyKey);
@@ -44,3 +46,7 @@ export const sendTransaction = async(address, contractAddress, data, value) => {
         };
     }
 }
+
+export const sanitize = ( content ) => {
+	return process.browser ? DOMPurify.sanitize( content ) : content;
+};

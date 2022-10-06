@@ -1,6 +1,23 @@
 @tailwind base;
 @tailwind components;
+
+@font-face {
+    font-family: "Pixeled";
+    src: url("/fonts/pixeled.ttf");
+}
+
+@font-face {
+    font-family: "SignPainter";
+    src: url("/fonts/SignPainter.ttf");
+}
+
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: Pixeled, system-ui, sans-serif;
+    }
+  }
 
 .fade-anim img {
     animation: fadeAnim 0.5s ease-out;
@@ -13,3 +30,16 @@
         opacity: 1;
     }
 }
+
+.text-color {
+    background: linear-gradient(225deg, #32C5FF 0%, #B620E0 51%, #F7B500 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-color {
+    background: 
+      linear-gradient(225deg, #32C5FF 0%, #B620E0 51%, #F7B500 100%) border-box;
+    display: inline-block;
+  }

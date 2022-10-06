@@ -7,7 +7,12 @@ module.exports = {
     './public/**/*.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        pixeled: ["Pixeled", "sans-serif"],
+        signPainter: ["SignPainter", "sans-serif"]
+      }
+    },
   },
   plugins: [require("flowbite/plugin")],
 }

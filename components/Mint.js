@@ -2,9 +2,10 @@ import { Button, Progress, Spinner } from "flowbite-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { showTxModal } from "../redux/slices/transactionSlice";
 import { showPopUp } from "../redux/slices/walletSlice";
-import tokenService from "../services/token";
+import tokenService, { tokenContract } from "../services/token";
 import { fromWei } from "../services/utils";
 
 const Mint = ({ address, chainId, status }) => {
@@ -13,6 +14,7 @@ const Mint = ({ address, chainId, status }) => {
     const [minting, setMinting] = useState(false)
     const [totalSupply, setTotalSupply] = useState('')
     const [maxSupply, setMaxSupply] = useState('')
+    const [percent, setPercent] = useState(0)
     const [cost, setCost] = useState('')
     const [error, setError] = useState('')
 
@@ -23,7 +25,6 @@ const Mint = ({ address, chainId, status }) => {
         } else {
             setMinting(true)
             const response = await tokenService.mintNFT(address)
-            console.log(response)
             if(response.code !== 200) {
                 setError(response.status)
                 dispatch(showTxModal({
@@ -50,12 +51,33 @@ const Mint = ({ address, chainId, status }) => {
         tokenService.getMaxSupply().then((value) => {
             setMaxSupply(value);
         })
-
         tokenService.getCost().then((value) => {
             setCost(fromWei(value));
         })
-
     }, [])
+
+    useEffect(() => {
+        if(totalSupply > 0 && maxSupply > 0) {
+            setPercent((totalSupply / maxSupply) * 100)
+        }
+    }, [totalSupply, maxSupply])
+
+    useEffect( () => {
+        tokenContract.events.TokenMinted({
+            filter: { to: address }
+        }, (error, data) => {
+            console.log(error)
+            console.log(data)
+            if(error) {
+                toast.error("Problem with minting the token.")
+            } else {
+                toast.success("The token minted successfully.")
+                tokenService.getTotalSupply().then((value) => {
+                    setTotalSupply(value);
+                })
+            }
+        })
+    }, [address])
 
     return (
         <div className="py-8 px-6 w-full  text-center bg-amber-100">
@@ -66,10 +88,10 @@ const Mint = ({ address, chainId, status }) => {
             <span className="text-xl font-bold text-gray-900 dark:text-white flex justify-center items-center">
                 <img src="/eth-logo.svg" width={14} alt="ETH" className="mr-3" /> {cost}
             </span>
-            <div className="w-96 mx-auto">
+            <div className="max-w-sm mx-auto font-signPainter">
                 <h3 className="py-4 text-xl font-bold">{totalSupply} out of {maxSupply} NFTs minted</h3>
                 <Progress
-                    progress={45}
+                    progress={percent}
                     color="yellow"
                 />
             </div>

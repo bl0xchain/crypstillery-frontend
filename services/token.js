@@ -1,7 +1,7 @@
 import { sendTransaction, web3 } from "./utils"
 
 const contractABI = require("./abis/crypstillery-abi.json");
-export const tokenContractAddress = "0x360dc6D646fBca4F184345b2573cb5c0Df1a9ec9";
+export const tokenContractAddress = "0x40Bf6C107CAb17181ec2Aa2959BEE028b4698ee1";
 
 export const tokenContract = new web3.eth.Contract(
     contractABI, tokenContractAddress
