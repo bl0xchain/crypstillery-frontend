@@ -7,11 +7,13 @@ import ConnectionCheck from '../components/ConnectionCheck'
 import TransactionModal from '../components/TransactionModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import AgeCheck from '../components/AgeCheck'
 
 function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
             <Header />
+            <AgeCheck />
             <ConnectionCheck />
             <TransactionModal />
             <ToastContainer />

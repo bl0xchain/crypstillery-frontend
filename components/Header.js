@@ -8,12 +8,14 @@ const Header = () => {
 
     return (
         <Navbar fluid={true} rounded={false}>
-            <Navbar.Brand href="/">
-                <img
-                    src="/LogoCRYP.png"
-                    className="mr-3 h-9 sm:h-9"
-                    alt="CRYPSTILLERY Logo"
-                />
+            <Navbar.Brand>
+                <Link href="/">
+                    <img
+                        src="/LogoCRYP.png"
+                        className="mr-3 h-9 sm:h-9 cursor-pointer"
+                        alt="CRYPSTILLERY Logo"
+                    />
+                </Link>
             </Navbar.Brand>
             <div className="flex md:order-2 items-center">
                 {

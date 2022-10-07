@@ -4,13 +4,13 @@ import { BsFacebook, BsInstagram, BsTwitter, BsGithub } from "react-icons/bs";
 const CFooter = () => {
     const theme = {
         theme: {footer: {
-            base: 'w-full bg-white shadow dark:bg-gray-800 md:flex md:items-center md:justify-between',
+            base: 'w-full bg-gray-100 shadow dark:bg-gray-800 md:flex md:items-center md:justify-between',
         }}
     }
     
     return (
         <Flowbite theme={theme} >
-        <Footer container={true} className="rounded-none">
+        <Footer container={true}>
             <div className="w-full">
                 <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1 lg:grid-cols-2">
                     <div>
