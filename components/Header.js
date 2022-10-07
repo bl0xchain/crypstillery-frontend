@@ -1,26 +1,36 @@
 import { Button, DarkThemeToggle, Flowbite, Navbar } from "flowbite-react";
-import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Wallet from "./Wallet";
 
 const Header = () => {
+    const router = useRouter()
+
     return (
         <Navbar fluid={true} rounded={false}>
             <Navbar.Brand href="/">
                 <img
                     src="/LogoCRYP.png"
-                    className="mr-3 h-6 sm:h-9"
+                    className="mr-3 h-9 sm:h-9"
                     alt="CRYPSTILLERY Logo"
                 />
             </Navbar.Brand>
             <div className="flex md:order-2 items-center">
-                <Wallet />
-                <Navbar.Toggle />
+                {
+                    router.pathname === "/" ? 
+                    <Link href="/distill">
+                        <a className="btn-flow">
+                            LET'S DISTILL
+                        </a>
+                    </Link> :
+                    <Wallet />
+                }
+                {/* <Navbar.Toggle /> */}
                 <Flowbite>
                     <DarkThemeToggle />
                 </Flowbite>
             </div>
-            <Navbar.Collapse>
+            {/* <Navbar.Collapse>
                 <Navbar.Link href="/navbars" active={true}>
                     Home
                 </Navbar.Link>
@@ -36,7 +46,7 @@ const Header = () => {
                 <Navbar.Link href="/navbars">
                     Contact
                 </Navbar.Link>
-            </Navbar.Collapse>
+            </Navbar.Collapse> */}
         </Navbar>
     );
 }

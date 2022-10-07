@@ -34,8 +34,8 @@ const TransactionModal = () => {
                             { transaction.message }
                         </h3>
                         <div className="flex justify-center gap-4">
-                            <Button >
-                                <a className="btn btn-color active" href={`https://ropsten.etherscan.io/tx/${transaction.address}`} target="_blank">View TXN</a>
+                            <Button>
+                                <a href={`https://ropsten.etherscan.io/tx/${transaction.address}`} target="_blank">View TXN</a>
                             </Button>
                             <Button onClick={handleClose} color="gray">Close</Button>
                         </div>

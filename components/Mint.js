@@ -80,31 +80,19 @@ const Mint = ({ address, chainId, status }) => {
     }, [address])
 
     return (
-        <div className="py-8 px-6 w-full  text-center bg-amber-100">
-            <h2 className="mb-4 text-3xl font-bold">
-                Mint your NFT!
-            </h2>
-            <Image src="/crypstillery-bottle.png" width={250} height={250} alt="NFT" />
-            <span className="text-xl font-bold text-gray-900 dark:text-white flex justify-center items-center">
-                <img src="/eth-logo.svg" width={14} alt="ETH" className="mr-3" /> {cost}
-            </span>
-            <div className="max-w-sm mx-auto font-signPainter">
-                <h3 className="py-4 text-xl font-bold">{totalSupply} out of {maxSupply} NFTs minted</h3>
-                <Progress
-                    progress={percent}
-                    color="yellow"
-                />
+        <div className="py-8 px-6 w-full text-center dark:bg-gray-700">
+            <img className="max-h-96 mx-auto md:mt-12" src="/crypt-bottle.png" alt="NFT Bottle" />
+            <div className="max-w-sm mx-auto">
+                <h3 className="py-4 font-bold text-gray-500">{maxSupply-totalSupply}/{maxSupply} AVAILABLE</h3>
             </div>
-            <div className="mt-6 flex justify-center">
+            <div className="mt-6">
                 {
                     minting ?
-                    <Button color="warning" size="xl" disabled={true}>
-                        <div className="mr-3">
-                            <Spinner size="sm" color="warning" />
-                        </div>
-                        MINTING ...
-                    </Button> :
-                    <Button className="inline-block" color="warning" size="xl" onClick={handleMint}>MINT NOW</Button>
+                    <button disabled type="button" class="text-white btn-color focus:ring-4 focus:outline-none font-medium rounded-full text-sm px-4 py-2 text-center inline-flex items-center">
+                        <Spinner size="sm" color="purple" style={{marginBottom: '10px'}} />
+                        <span className="ml-3">MINTING...</span>
+                    </button> :
+                    <button className="text-white focus:ring-4 focus:outline-none font-medium rounded-full text-sm px-4 pt-2 pb-3 btn-color" onClick={handleMint}>MINT {cost} ETH</button>
                 }
                 
             </div>

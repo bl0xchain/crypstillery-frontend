@@ -62,10 +62,10 @@ const NewsletterForm = ( { status, message, onValidated }) => {
 
     return (
         <div className='mt-20'>
-            <div class="relative max-w-md mx-auto font-sans">
+            <div className="relative max-w-md mx-auto font-sans">
                 <input 
                     type="email" 
-                    class="block py-4 pl-4 pr-40 w-full text-sm text-gray-900 bg-gray-50 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    className="block py-4 pl-4 pr-40 w-full text-sm text-gray-900 bg-gray-50 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                     placeholder="satoshi@gmgin.com" 
                     onChange={(event) => setEmail(event?.target?.value ?? '')}
                     onKeyUp={(event) => handleInputKeyEvent(event)}

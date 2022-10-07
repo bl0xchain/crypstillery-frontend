@@ -42,4 +42,26 @@
     background: 
       linear-gradient(225deg, #32C5FF 0%, #B620E0 51%, #F7B500 100%) border-box;
     display: inline-block;
-  }
+}
+
+.btn-flow {
+    flex: 1;
+    padding: 6px 12px 8px;
+    font-size: 0.75rem;
+    /* margin: 5px; */
+    border-radius: 999px;
+    border: 2px solid #EBAE00;
+    white-space: nowrap;
+    color: #EBAE00;
+    background: transparent;
+    background-image: url(/nav-bg-fill-gold.png);
+    background-repeat: repeat-x;
+    background-position: 0 -100%;
+    transition: 0.5s ease;
+    transition-duration: 3.5s;
+}
+
+.btn-flow:hover {
+    background-position: 500% 100%;
+    color: #333;
+}

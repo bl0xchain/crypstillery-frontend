@@ -16,12 +16,11 @@ const CFooter = () => {
                     <div>
                         <Footer.Brand
                         href="/"
-                        src="/crypstillery-icon.png"
+                        src="/LogoCRYP.png"
                         alt="Crypstillery Logo"
-                        name="CRYPSTILLERY"
                         />
                     </div>
-                    <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+                    <div className="grid grid-cols-2 gap-6 sm:mt-4 sm:gap-6">
                         <div>
                             <Footer.Title title="about" />
                             <Footer.LinkGroup col={true}>
@@ -30,17 +29,6 @@ const CFooter = () => {
                                 </Footer.Link>
                                 <Footer.Link href="#">
                                 Tailwind CSS
-                                </Footer.Link>
-                            </Footer.LinkGroup>
-                        </div>
-                        <div>
-                            <Footer.Title title="Follow us" />
-                            <Footer.LinkGroup col={true}>
-                                <Footer.Link href="#">
-                                Github
-                                </Footer.Link>
-                                <Footer.Link href="#">
-                                Discord
                                 </Footer.Link>
                             </Footer.LinkGroup>
                         </div>
@@ -64,7 +52,7 @@ const CFooter = () => {
                         by="CRYPSTILLERY"
                         year={2022}
                     />
-                    <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+                    <div className="mt-4 flex space-x-6 order-1 md:order-2 sm:mt-0 sm:justify-center">
                         <Footer.Icon
                         href="#"
                         icon={BsFacebook}

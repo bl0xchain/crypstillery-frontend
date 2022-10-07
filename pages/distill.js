@@ -11,10 +11,7 @@ const Distill = () => {
 
     return (
         <>
-            <Slider />
             <Mint address={address} chainId={chainId} status={status} />
-            <Products />
-            <Brands />
         </>
     )
 }
