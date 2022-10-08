@@ -12,7 +12,7 @@ const CFooter = () => {
         <Flowbite theme={theme} >
         <Footer container={true}>
             <div className="w-full">
-                <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1 lg:grid-cols-2">
+                {/* <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1 lg:grid-cols-2">
                     <div>
                         <Footer.Brand
                         href="/"
@@ -45,7 +45,7 @@ const CFooter = () => {
                         </div>
                     </div>
                 </div>
-                <Footer.Divider />
+                <Footer.Divider /> */}
                 <div className="w-full sm:flex sm:items-center sm:justify-between">
                     <Footer.Copyright
                         href="#"

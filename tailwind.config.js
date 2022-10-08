@@ -10,8 +10,10 @@ module.exports = {
     extend: {
       fontFamily: {
         pixeled: ["Pixeled", "sans-serif"],
-        signPainter: ["SignPainter", "sans-serif"]
-      }
+        signPainter: ["SignPainter", "sans-serif"],
+        amaranth: ["AmaranthBold", "sans-serif"],
+        roboto: ["RobotoBlack", "sans-serif"]
+      },
     },
   },
   plugins: [require("flowbite/plugin")],

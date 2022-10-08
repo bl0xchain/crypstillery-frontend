@@ -11,6 +11,16 @@
     src: url("/fonts/SignPainter.ttf");
 }
 
+@font-face {
+    font-family: "AmaranthBold";
+    src: url("/fonts/AmaranthBold.ttf");
+}
+
+@font-face {
+    font-family: "RobotoBlack";
+    src: url("/fonts/RobotoBlack.ttf");
+}
+
 @tailwind utilities;
 
 @layer base {

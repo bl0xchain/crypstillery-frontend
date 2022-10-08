@@ -1,4 +1,6 @@
+import Particles from "react-particles"
 import { useSelector } from "react-redux"
+import { loadBubblesPreset } from "tsparticles-preset-bubbles"
 import Brands from "../components/Brands"
 import Mint from "../components/Mint"
 import Products from "../components/Products"
@@ -12,6 +14,12 @@ const Distill = () => {
     return (
         <>
             <Mint address={address} chainId={chainId} status={status} />
+            <Particles id="tsparticles" options={{
+                preset: "bubbles",
+                fullScreen: {
+                    zIndex: -1
+                }
+            }} init={async (engine) => await loadBubblesPreset(engine)}/>
         </>
     )
 }
