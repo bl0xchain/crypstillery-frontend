@@ -8,10 +8,14 @@ import TransactionModal from '../components/TransactionModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import AgeCheck from '../components/AgeCheck'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
     return (
         <Provider store={store}>
+            <Head>
+                <title>CRYPSTILLERY - WORLD’s FIRST ON CHAIN DISTRILLERY</title>
+            </Head>
             <Header />
             <AgeCheck />
             <ConnectionCheck />

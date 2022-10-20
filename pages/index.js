@@ -37,8 +37,8 @@ const Home = () => {
                         </path>
                         </pattern>
                     </defs>
-                    <text x="0" y="15" fontSize="17" fill="#F0F0F0" fill-opacity="0.5">GENESIS GIN</text>
-                    <text x="0" y="15" fontSize="17" fill="url(#wave)"  fill-opacity="1">GENESIS GIN</text>
+                    <text x="0" y="15" fontSize="17" fill="#F0F0F0" fillOpacity="0.5">GENESIS GIN</text>
+                    <text x="0" y="15" fontSize="17" fill="url(#wave)"  fillOpacity="1">GENESIS GIN</text>
                 </svg>
             </div>
             
